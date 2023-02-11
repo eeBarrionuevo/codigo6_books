@@ -3,13 +3,26 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ItemSliderWidget extends StatelessWidget {
-  const ItemSliderWidget({super.key});
+  Map<int, Color> colors = {
+    1: Color(0xffF8BACF),
+    2: Color(0xffACDCF2),
+    3: Color(0xffB2DFDC),
+    4: Color(0xffE1BEE8),
+    5: Color(0xffC5CAE8),
+    6: Color(0xffFFCC80),
+    7: Color(0xffffafcc),
+    8: Color(0xffcdb4db),
+    9: Color(0xffbde0fe),
+    10: Color(0xff83c5be),
+  };
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double pyth = sqrt(pow(height, 2) + pow(width, 2));
+
+    int index = Random().nextInt(10) + 1;
 
     return Container(
       width: pyth * 0.25,
@@ -20,7 +33,7 @@ class ItemSliderWidget extends StatelessWidget {
             width: pyth * 0.25,
             height: pyth * 0.19,
             decoration: BoxDecoration(
-              color: const Color(0xffB2DFDC),
+              color: colors[index],
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Stack(
