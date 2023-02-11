@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:codigo6_books/db/db_admin.dart';
+import 'package:codigo6_books/widgets/item_slider_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -91,40 +92,33 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 60.0,
-          ),
-          Container(
-            width: pyth * 0.25,
-            height: pyth * 0.19,
-            decoration: BoxDecoration(
-              color: const Color(0xffB2DFDC),
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Positioned(
-                  bottom: pyth * 0.028,
-                  child: Container(
-                    height: pyth * 0.195,
-                    width: pyth * 0.14,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.35),
-                          blurRadius: 12,
-                          offset: const Offset(4, 4),
-                        ),
-                      ],
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "https://www.theonering.net/torwp/wp-content/uploads/2022/04/pu1i0ekgyhu81.webp"),
-                      ),
-                    ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Text(
+                  "Mis libros favoritos",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(
+                    children: [
+                      ItemSliderWidget(),
+                      ItemSliderWidget(),
+                      ItemSliderWidget(),
+                    ],
                   ),
                 ),
               ],
