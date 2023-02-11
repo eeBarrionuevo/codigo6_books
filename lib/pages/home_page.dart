@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double pyth = sqrt(pow(height, 2) + pow(width, 2));
-    print(pyth);
+
     return Scaffold(
       body: Column(
         children: [
@@ -29,8 +29,20 @@ class HomePage extends StatelessWidget {
             child: SafeArea(
               child: Column(
                 children: [
-                  SizedBox(
+                  Container(
                     width: pyth * 0.35,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                    ),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 14.0,
+                          offset: const Offset(4, 4),
+                        ),
+                      ],
+                    ),
                     child: TextField(
                       style: const TextStyle(
                         fontSize: 14.0,
@@ -77,6 +89,45 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+          const SizedBox(
+            height: 60.0,
+          ),
+          Container(
+            width: pyth * 0.25,
+            height: pyth * 0.19,
+            decoration: BoxDecoration(
+              color: const Color(0xffB2DFDC),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  bottom: pyth * 0.028,
+                  child: Container(
+                    height: pyth * 0.195,
+                    width: pyth * 0.14,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.35),
+                          blurRadius: 12,
+                          offset: const Offset(4, 4),
+                        ),
+                      ],
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            "https://www.theonering.net/torwp/wp-content/uploads/2022/04/pu1i0ekgyhu81.webp"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
