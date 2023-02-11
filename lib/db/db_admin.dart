@@ -35,13 +35,22 @@ class DBAdmin {
 
   //Consultas
 
-  getBooks() async {
+  getBooksRaw() async {
     Database? db = await _checkDatabase();
-    List data = await db!.rawQuery("SELECT * FROM Book");
+    List data = await db!.rawQuery("SELECT id, title FROM Book WHERE id = 3");
     // print(data);
     data.forEach((element) {
       print(element);
     });
+  }
+
+  getBooks() async {
+    Database? db = await _checkDatabase();
+    List data = await db!.query(
+      "Book",
+      columns: ["id", "title"],
+    );
+    print(data);
   }
 
   //Inserciones
@@ -68,10 +77,38 @@ class DBAdmin {
 
   //Actualizaciones
 
+  updateBookRaw() async {
+    Database? db = await _checkDatabase();
+    int value = await db!.rawUpdate(
+        "UPDATE Book set title = 'El zorro de arriba y el zorro de abajo' WHERE id = 4");
+    print(value);
+  }
+
   updateBook() async {
     Database? db = await _checkDatabase();
+    int value = await db!.update(
+      "Book",
+      {
+        "title": "1984",
+      },
+      where: "id = 3",
+    );
   }
 
   //Eliminar
 
+  deleteBookRaw() async {
+    Database? db = await _checkDatabase();
+    int value = await db!.rawDelete("DELETE FROM Book WHERE id = 7");
+    print(value);
+  }
+
+  deleteBook() async {
+    Database? db = await _checkDatabase();
+    int value = await db!.delete(
+      "Book",
+      where: "id = 8",
+    );
+    print(value);
+  }
 }
