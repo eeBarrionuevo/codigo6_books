@@ -1,11 +1,52 @@
 import 'dart:math';
 
 import 'package:codigo6_books/db/db_admin.dart';
+import 'package:codigo6_books/widgets/common_textfield_widget.dart';
+import 'package:codigo6_books/widgets/item_home_widget.dart';
 import 'package:codigo6_books/widgets/item_slider_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  showFormBook() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0),
+            decoration: const BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(36.0),
+                topRight: Radius.circular(36.0),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Agregar libro",
+                ),
+                CommonTextFieldWidget(),
+                CommonTextFieldWidget(),
+                CommonTextFieldWidget(),
+                CommonTextFieldWidget(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +55,34 @@ class HomePage extends StatelessWidget {
     double pyth = sqrt(pow(height, 2) + pow(width, 2));
 
     return Scaffold(
+      floatingActionButton: InkWell(
+        onTap: () {
+          showFormBook();
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8.0),
+          decoration: BoxDecoration(
+            color: const Color(0xff22223b),
+            borderRadius: BorderRadius.circular(14.0),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              Text(
+                "Agregar",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -128,7 +197,7 @@ class HomePage extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  Text(
+                  const Text(
                     "Lista general",
                     style: TextStyle(
                       fontSize: 20.0,
@@ -138,56 +207,11 @@ class HomePage extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.network(
-                          "https://www.theonering.net/torwp/wp-content/uploads/2022/04/pu1i0ekgyhu81.webp",
-                          width: pyth * 0.12,
-                          height: pyth * 0.16,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "The lord of the Rings",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              "JRR Tolkien",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 6.0,
-                            ),
-                            Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black.withOpacity(0.65),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  ItemHomeWidget(),
+                  ItemHomeWidget(),
+                  ItemHomeWidget(),
+                  ItemHomeWidget(),
+                  ItemHomeWidget(),
                   const SizedBox(
                     height: 40.0,
                   ),
