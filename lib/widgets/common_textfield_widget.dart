@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CommonTextFieldWidget extends StatelessWidget {
+  String label;
+  String hintText;
+  IconData icon;
+  int? maxLines;
+
+  CommonTextFieldWidget({
+    required this.hintText,
+    required this.icon,
+    required this.label,
+    this.maxLines,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,20 +21,22 @@ class CommonTextFieldWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            " Título:",
+            " $label:",
           ),
           const SizedBox(
             height: 5.0,
           ),
           Container(
             child: TextField(
+              maxLines: maxLines,
               decoration: InputDecoration(
-                hintText: "ingresa el título del libro...",
+                hintText: hintText,
                 filled: true,
                 fillColor: Colors.white,
-                prefixIcon: const Icon(Icons.rocket),
+                prefixIcon: Icon(icon),
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 14,
+                  vertical: 12,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.0),

@@ -36,10 +36,27 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "Agregar libro",
                 ),
-                CommonTextFieldWidget(),
-                CommonTextFieldWidget(),
-                CommonTextFieldWidget(),
-                CommonTextFieldWidget(),
+                CommonTextFieldWidget(
+                  hintText: "Ingresa un título",
+                  icon: Icons.rocket,
+                  label: "Título",
+                ),
+                CommonTextFieldWidget(
+                  hintText: "Ingresa un autor",
+                  icon: Icons.person,
+                  label: "Autor",
+                ),
+                CommonTextFieldWidget(
+                  hintText: "Ingresa el url de la portada",
+                  icon: Icons.image,
+                  label: "Portada",
+                ),
+                CommonTextFieldWidget(
+                  hintText: "Ingresa una descripción",
+                  icon: Icons.view_headline,
+                  label: "Descripción",
+                  maxLines: 4,
+                ),
               ],
             ),
           ),
