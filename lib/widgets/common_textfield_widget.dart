@@ -5,12 +5,14 @@ class CommonTextFieldWidget extends StatelessWidget {
   String hintText;
   IconData icon;
   int? maxLines;
+  TextEditingController controller;
 
   CommonTextFieldWidget({
     required this.hintText,
     required this.icon,
     required this.label,
     this.maxLines,
+    required this.controller,
   });
 
   @override
@@ -36,7 +38,8 @@ class CommonTextFieldWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: TextField(
+            child: TextFormField(
+              controller: controller,
               maxLines: maxLines,
               decoration: InputDecoration(
                 hintText: hintText,
@@ -56,6 +59,12 @@ class CommonTextFieldWidget extends StatelessWidget {
                   borderSide: BorderSide.none,
                 ),
               ),
+              validator: (String? value) {
+                if (value != null && value.isEmpty) {
+                  return "Campo obligatorio";
+                }
+                return null;
+              },
             ),
           ),
         ],
