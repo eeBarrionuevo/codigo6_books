@@ -27,6 +27,15 @@ class CommonTextFieldWidget extends StatelessWidget {
             height: 5.0,
           ),
           Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.07),
+                  blurRadius: 12,
+                  offset: const Offset(4, 4),
+                ),
+              ],
+            ),
             child: TextField(
               maxLines: maxLines,
               decoration: InputDecoration(

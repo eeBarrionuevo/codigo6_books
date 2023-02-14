@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:codigo6_books/db/db_admin.dart';
+import 'package:codigo6_books/pages/modals/form_book_modal.dart';
 import 'package:codigo6_books/widgets/common_textfield_widget.dart';
 import 'package:codigo6_books/widgets/item_home_widget.dart';
 import 'package:codigo6_books/widgets/item_slider_widget.dart';
@@ -21,45 +22,7 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0),
-            decoration: const BoxDecoration(
-              color: Colors.amber,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(36.0),
-                topRight: Radius.circular(36.0),
-              ),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Agregar libro",
-                ),
-                CommonTextFieldWidget(
-                  hintText: "Ingresa un título",
-                  icon: Icons.rocket,
-                  label: "Título",
-                ),
-                CommonTextFieldWidget(
-                  hintText: "Ingresa un autor",
-                  icon: Icons.person,
-                  label: "Autor",
-                ),
-                CommonTextFieldWidget(
-                  hintText: "Ingresa el url de la portada",
-                  icon: Icons.image,
-                  label: "Portada",
-                ),
-                CommonTextFieldWidget(
-                  hintText: "Ingresa una descripción",
-                  icon: Icons.view_headline,
-                  label: "Descripción",
-                  maxLines: 4,
-                ),
-              ],
-            ),
-          ),
+          child: FormBookModal(),
         );
       },
     );
