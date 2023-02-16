@@ -187,11 +187,22 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  ItemHomeWidget(),
-                  ItemHomeWidget(),
-                  ItemHomeWidget(),
-                  ItemHomeWidget(),
-                  ItemHomeWidget(),
+                  FutureBuilder(
+                    future: DBAdmin().getBooks(),
+                    builder: (BuildContext context, AsyncSnapshot snap) {
+                      if (snap.hasData) {
+                        List<Map> books = snap.data;
+                        return ListView.builder(
+                          itemCount: books.length,
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Text(books[index]["title"]);
+                          },
+                        );
+                      }
+                      return CircularProgressIndicator();
+                    },
+                  ),
                   const SizedBox(
                     height: 40.0,
                   ),

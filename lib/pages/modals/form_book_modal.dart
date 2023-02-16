@@ -20,31 +20,6 @@ class _FormBookModalState extends State<FormBookModal> {
   final _myFormKey = GlobalKey<FormState>();
 
   void registerBook() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Color(0xff06d6a0),
-        duration: const Duration(seconds: 5),
-        behavior: SnackBarBehavior.floating,
-        // padding: EdgeInsets.all(12.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        content: Row(
-          children: [
-            Icon(Icons.check, color: Colors.white),
-            SizedBox(
-              width: 10.0,
-            ),
-            Expanded(
-              child: Text(
-                "El libro se registró correctamente.",
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-
     if (_myFormKey.currentState!.validate()) {
       //Registrar un libro
       // String title = _titleController.text;
@@ -72,7 +47,30 @@ class _FormBookModalState extends State<FormBookModal> {
       DBAdmin().insertBook(myBook).then((mandarina) {
         if (mandarina >= 0) {
           //Se agregó el libro correctamente
-
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Color(0xff06d6a0),
+              duration: const Duration(seconds: 5),
+              behavior: SnackBarBehavior.floating,
+              // padding: EdgeInsets.all(12.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              content: Row(
+                children: [
+                  Icon(Icons.check, color: Colors.white),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Expanded(
+                    child: Text(
+                      "El libro se registró correctamente.",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
           Navigator.pop(context);
         } else {}
       }).catchError((error) {

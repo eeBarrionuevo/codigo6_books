@@ -45,13 +45,12 @@ class DBAdmin {
     });
   }
 
-  getBooks() async {
+  Future<List<Map>> getBooks() async {
     Database? db = await _checkDatabase();
-    List data = await db!.query(
+    List<Map> data = await db!.query(
       "Book",
-      columns: ["id", "title"],
     );
-    print(data);
+    return data;
   }
 
   //Inserciones
