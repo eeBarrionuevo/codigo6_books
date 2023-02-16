@@ -27,14 +27,15 @@ class _FormBookModalState extends State<FormBookModal> {
       // String image = _imageController.text;
       // String description = _descriptionController.text;
       // DBAdmin().insertBook(title, author, description, image);
-      Map<String, dynamic> bookMap = {
-        "image": _imageController.text,
-        "title": _titleController.text,
-        "description": _descriptionController.text,
-        "author": _authorController.text,
-      };
 
-      DBAdmin().insertBook(bookMap);
+      // Map<String, dynamic> bookMap = {
+      //   "image": _imageController.text,
+      //   "title": _titleController.text,
+      //   "description": _descriptionController.text,
+      //   "author": _authorController.text,
+      // };
+
+      // DBAdmin().insertBook(bookMap);
 
       BookModel myBook = BookModel(
         title: _titleController.text,
@@ -42,6 +43,10 @@ class _FormBookModalState extends State<FormBookModal> {
         image: _imageController.text,
         description: _descriptionController.text,
       );
+
+      print(myBook.convertirAMapa());
+
+      DBAdmin().insertBook(myBook);
     }
   }
 

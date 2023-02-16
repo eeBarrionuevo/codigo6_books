@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:codigo6_books/models/book_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -67,7 +68,10 @@ class DBAdmin {
     // String author,
     // String description,
     // String image,
-    Map<String, dynamic> data,
+
+    // Map<String, dynamic> data,
+
+    BookModel model,
   ) async {
     Database? db = await _checkDatabase();
     db!.insert(
@@ -78,7 +82,13 @@ class DBAdmin {
       //   "description": description,
       //   "image": image,
       // },
-      data,
+      // {
+      //   "title": model.title,
+      //   "author": model.author,
+      //   "description": model.description,
+      //   "image": model.image,
+      // },
+      model.convertirAMapa(),
     );
   }
 

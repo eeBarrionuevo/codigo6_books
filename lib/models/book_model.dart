@@ -10,4 +10,11 @@ class BookModel {
     required this.image,
     required this.description,
   });
+
+  convertirAMapa() => {
+        "title": title,
+        "author": author,
+        "image": image,
+        "description": description,
+      };
 }
