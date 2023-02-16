@@ -1,10 +1,18 @@
 import 'package:codigo6_books/widgets/common_textfield_widget.dart';
 import 'package:flutter/material.dart';
 
-class FormBookModal extends StatelessWidget {
+class FormBookModal extends StatefulWidget {
+  @override
+  State<FormBookModal> createState() => _FormBookModalState();
+}
+
+class _FormBookModalState extends State<FormBookModal> {
   final TextEditingController _titleController = TextEditingController();
+
   final TextEditingController _authorController = TextEditingController();
+
   final TextEditingController _imageController = TextEditingController();
+
   final TextEditingController _descriptionController = TextEditingController();
 
   final _myFormKey = GlobalKey<FormState>();
@@ -21,6 +29,7 @@ class FormBookModal extends StatelessWidget {
         ),
       ),
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Form(
           key: _myFormKey,
           child: Column(
