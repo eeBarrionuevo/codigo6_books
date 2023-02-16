@@ -44,9 +44,14 @@ class _FormBookModalState extends State<FormBookModal> {
         description: _descriptionController.text,
       );
 
-      print(myBook.convertirAMapa());
-
-      DBAdmin().insertBook(myBook);
+      DBAdmin().insertBook(myBook).then((value) {
+        if (value >= 0) {
+          //Se agregó el libro correctamente
+          Navigator.pop(context);
+        } else {}
+      }).catchError((error) {
+        print(error);
+      });
     }
   }
 

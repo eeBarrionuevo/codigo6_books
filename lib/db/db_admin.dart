@@ -63,33 +63,13 @@ class DBAdmin {
     print(value);
   }
 
-  insertBook(
-    // String title,
-    // String author,
-    // String description,
-    // String image,
-
-    // Map<String, dynamic> data,
-
-    BookModel model,
-  ) async {
+  Future<int> insertBook(BookModel model) async {
     Database? db = await _checkDatabase();
-    db!.insert(
+    int value = await db!.insert(
       "BOOK",
-      // {
-      //   "title": title,
-      //   "author": author,
-      //   "description": description,
-      //   "image": image,
-      // },
-      // {
-      //   "title": model.title,
-      //   "author": model.author,
-      //   "description": model.description,
-      //   "image": model.image,
-      // },
-      model.convertirAMapa(),
+      model.toJson(),
     );
+    return value;
   }
 
   //Actualizaciones

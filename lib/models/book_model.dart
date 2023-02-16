@@ -11,7 +11,7 @@ class BookModel {
     required this.description,
   });
 
-  convertirAMapa() => {
+  Map<String, dynamic> toJson() => {
         "title": title,
         "author": author,
         "image": image,
