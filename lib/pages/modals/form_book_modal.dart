@@ -1,3 +1,5 @@
+import 'package:codigo6_books/db/db_admin.dart';
+import 'package:codigo6_books/models/book_model.dart';
 import 'package:codigo6_books/widgets/common_textfield_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,32 @@ class _FormBookModalState extends State<FormBookModal> {
   final TextEditingController _descriptionController = TextEditingController();
 
   final _myFormKey = GlobalKey<FormState>();
+
+  void registerBook() {
+    if (_myFormKey.currentState!.validate()) {
+      //Registrar un libro
+      // String title = _titleController.text;
+      // String author = _authorController.text;
+      // String image = _imageController.text;
+      // String description = _descriptionController.text;
+      // DBAdmin().insertBook(title, author, description, image);
+      Map<String, dynamic> bookMap = {
+        "image": _imageController.text,
+        "title": _titleController.text,
+        "description": _descriptionController.text,
+        "author": _authorController.text,
+      };
+
+      DBAdmin().insertBook(bookMap);
+
+      BookModel myBook = BookModel(
+        title: _titleController.text,
+        author: _authorController.text,
+        image: _imageController.text,
+        description: _descriptionController.text,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +103,7 @@ class _FormBookModalState extends State<FormBookModal> {
                 height: 50.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    _myFormKey.currentState!.validate();
+                    registerBook();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff22223b),

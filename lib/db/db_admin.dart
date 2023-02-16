@@ -62,16 +62,23 @@ class DBAdmin {
     print(value);
   }
 
-  insertBook() async {
+  insertBook(
+    // String title,
+    // String author,
+    // String description,
+    // String image,
+    Map<String, dynamic> data,
+  ) async {
     Database? db = await _checkDatabase();
     db!.insert(
       "BOOK",
-      {
-        "title": "Yawar Fiesta",
-        "author": "Jose Maria Arguedas",
-        "description": "Loremmmmmm",
-        "image": "http://www...",
-      },
+      // {
+      //   "title": title,
+      //   "author": author,
+      //   "description": description,
+      //   "image": image,
+      // },
+      data,
     );
   }
 
