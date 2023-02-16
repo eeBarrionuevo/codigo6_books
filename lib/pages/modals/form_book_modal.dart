@@ -20,6 +20,12 @@ class _FormBookModalState extends State<FormBookModal> {
   final _myFormKey = GlobalKey<FormState>();
 
   void registerBook() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Hola"),
+      ),
+    );
+
     if (_myFormKey.currentState!.validate()) {
       //Registrar un libro
       // String title = _titleController.text;
@@ -44,9 +50,10 @@ class _FormBookModalState extends State<FormBookModal> {
         description: _descriptionController.text,
       );
 
-      DBAdmin().insertBook(myBook).then((value) {
-        if (value >= 0) {
+      DBAdmin().insertBook(myBook).then((mandarina) {
+        if (mandarina >= 0) {
           //Se agregó el libro correctamente
+
           Navigator.pop(context);
         } else {}
       }).catchError((error) {
