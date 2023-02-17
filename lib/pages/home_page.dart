@@ -25,7 +25,9 @@ class _HomePageState extends State<HomePage> {
           child: FormBookModal(),
         );
       },
-    );
+    ).then((value) {
+      setState(() {});
+    });
   }
 
   @override
@@ -192,13 +194,36 @@ class _HomePageState extends State<HomePage> {
                     builder: (BuildContext context, AsyncSnapshot snap) {
                       if (snap.hasData) {
                         List<Map> books = snap.data;
-                        return ListView.builder(
-                          itemCount: books.length,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Text(books[index]["title"]);
-                          },
-                        );
+                        print(books);
+                        return books.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: books.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ItemHomeWidget(
+                                    book: books[index],
+                                  );
+                                },
+                              )
+                            : Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/box.png",
+                                        height: pyth * 0.1,
+                                      ),
+                                      const SizedBox(
+                                        height: 8.0,
+                                      ),
+                                      const Text(
+                                          "Por favor registra tu primer libro.")
+                                    ],
+                                  ),
+                                ),
+                              );
                       }
                       return CircularProgressIndicator();
                     },

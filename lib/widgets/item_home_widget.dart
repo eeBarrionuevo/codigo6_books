@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ItemHomeWidget extends StatelessWidget {
-  const ItemHomeWidget({super.key});
+  Map book;
+
+  ItemHomeWidget({required this.book});
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +34,14 @@ class ItemHomeWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "The lord of the Rings",
+                  book["title"],
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
-                  "JRR Tolkien",
+                  book["author"],
                   style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
@@ -49,7 +51,7 @@ class ItemHomeWidget extends StatelessWidget {
                   height: 6.0,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  book["description"],
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

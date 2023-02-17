@@ -49,6 +49,7 @@ class DBAdmin {
     Database? db = await _checkDatabase();
     List<Map> data = await db!.query(
       "Book",
+      orderBy: "id DESC",
     );
     return data;
   }
