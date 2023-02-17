@@ -14,8 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map> myBooks = [];
-
   showFormBook() {
     showModalBottomSheet(
       context: context,
@@ -150,97 +148,119 @@ class _HomePageState extends State<HomePage> {
               future: DBAdmin().getBooks(),
               builder: (BuildContext context, AsyncSnapshot snap) {
                 if (snap.hasData) {
-                  return Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 8.0,
-                        ),
-                        Text(
-                          "Mis libros favoritos",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          physics: const BouncingScrollPhysics(),
-                          child: Row(
+                  List<Map> myBooks = snap.data;
+                  return myBooks.isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ItemSliderWidget(),
-                              ItemSliderWidget(),
-                              ItemSliderWidget(),
-                              ItemSliderWidget(),
-                              ItemSliderWidget(),
-                              ItemSliderWidget(),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Text(
+                                "Mis libros favoritos",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                physics: const BouncingScrollPhysics(),
+                                child: Row(
+                                  children: [
+                                    ItemSliderWidget(),
+                                    ItemSliderWidget(),
+                                    ItemSliderWidget(),
+                                    ItemSliderWidget(),
+                                    ItemSliderWidget(),
+                                    ItemSliderWidget(),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              const Text(
+                                "Lista general",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              FutureBuilder(
+                                future: DBAdmin().getBooks(),
+                                builder:
+                                    (BuildContext context, AsyncSnapshot snap) {
+                                  if (snap.hasData) {
+                                    List<Map> books = snap.data;
+                                    return books.isNotEmpty
+                                        ? ListView.builder(
+                                            itemCount: books.length,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return ItemHomeWidget(
+                                                book: books[index],
+                                              );
+                                            },
+                                          )
+                                        : Center(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/images/box.png",
+                                                    height: pyth * 0.1,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8.0,
+                                                  ),
+                                                  const Text(
+                                                      "Por favor registra tu primer libro.")
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                  }
+                                  return CircularProgressIndicator();
+                                },
+                              ),
+                              const SizedBox(
+                                height: 40.0,
+                              ),
                             ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Text(
-                          "Lista general",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
+                        )
+                      : Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/images/box.png",
+                                  height: pyth * 0.1,
+                                ),
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                const Text(
+                                    "Por favor registra tu primer libro.")
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        FutureBuilder(
-                          future: DBAdmin().getBooks(),
-                          builder: (BuildContext context, AsyncSnapshot snap) {
-                            if (snap.hasData) {
-                              List<Map> books = snap.data;
-                              return books.isNotEmpty
-                                  ? ListView.builder(
-                                      itemCount: books.length,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return ItemHomeWidget(
-                                          book: books[index],
-                                        );
-                                      },
-                                    )
-                                  : Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(20.0),
-                                        child: Column(
-                                          children: [
-                                            Image.asset(
-                                              "assets/images/box.png",
-                                              height: pyth * 0.1,
-                                            ),
-                                            const SizedBox(
-                                              height: 8.0,
-                                            ),
-                                            const Text(
-                                                "Por favor registra tu primer libro.")
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                            }
-                            return CircularProgressIndicator();
-                          },
-                        ),
-                        const SizedBox(
-                          height: 40.0,
-                        ),
-                      ],
-                    ),
-                  );
+                        );
                 }
                 return CircularProgressIndicator();
               },
