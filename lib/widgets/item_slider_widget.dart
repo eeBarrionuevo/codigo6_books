@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ItemSliderWidget extends StatelessWidget {
+  Map book;
+  ItemSliderWidget({required this.book});
+
   Map<int, Color> colors = {
     1: Color(0xffF8BACF),
     2: Color(0xffACDCF2),
@@ -54,10 +57,9 @@ class ItemSliderWidget extends StatelessWidget {
                           offset: const Offset(4, 4),
                         ),
                       ],
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "https://www.theonering.net/torwp/wp-content/uploads/2022/04/pu1i0ekgyhu81.webp"),
+                        image: NetworkImage(book["image"]),
                       ),
                     ),
                   ),
@@ -69,8 +71,8 @@ class ItemSliderWidget extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                const Text(
-                  "The lord of the rings: Chapter 2",
+                Text(
+                  book["title"],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   textAlign: TextAlign.center,
@@ -84,7 +86,7 @@ class ItemSliderWidget extends StatelessWidget {
                   height: 6.0,
                 ),
                 Text(
-                  "JRR Tolkien",
+                  book["author"],
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

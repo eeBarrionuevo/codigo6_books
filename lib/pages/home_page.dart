@@ -172,14 +172,11 @@ class _HomePageState extends State<HomePage> {
                                 scrollDirection: Axis.horizontal,
                                 physics: const BouncingScrollPhysics(),
                                 child: Row(
-                                  children: [
-                                    ItemSliderWidget(),
-                                    ItemSliderWidget(),
-                                    ItemSliderWidget(),
-                                    ItemSliderWidget(),
-                                    ItemSliderWidget(),
-                                    ItemSliderWidget(),
-                                  ],
+                                  children: myBooks
+                                      .map((item) => ItemSliderWidget(
+                                            book: item,
+                                          ))
+                                      .toList(),
                                 ),
                               ),
                               const SizedBox(
@@ -195,46 +192,14 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              FutureBuilder(
-                                future: DBAdmin().getBooks(),
-                                builder:
-                                    (BuildContext context, AsyncSnapshot snap) {
-                                  if (snap.hasData) {
-                                    List<Map> books = snap.data;
-                                    return books.isNotEmpty
-                                        ? ListView.builder(
-                                            itemCount: books.length,
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return ItemHomeWidget(
-                                                book: books[index],
-                                              );
-                                            },
-                                          )
-                                        : Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
-                                              child: Column(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/box.png",
-                                                    height: pyth * 0.1,
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8.0,
-                                                  ),
-                                                  const Text(
-                                                      "Por favor registra tu primer libro.")
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                  }
-                                  return CircularProgressIndicator();
+                              ListView.builder(
+                                itemCount: myBooks.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ItemHomeWidget(
+                                    book: myBooks[index],
+                                  );
                                 },
                               ),
                               const SizedBox(
