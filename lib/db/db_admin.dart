@@ -48,21 +48,45 @@ class DBAdmin {
 
   Future<List<BookModel>> getBooks() async {
     Database? db = await _checkDatabase();
-    List<Map> data = await db!.query(
+    List<Map<String, dynamic>> data = await db!.query(
       "Book",
       orderBy: "id DESC",
     );
-    List<BookModel> books = [];
+    List<BookModel> books = data.map((e) => BookModel.fromJson(e)).toList();
 
-    data.forEach((element) {
-      BookModel model = BookModel(
-        title: element["title"],
-        author: element["author"],
-        image: element["image"],
-        description: element["description"],
-      );
-      books.add(model);
-    });
+    // data.forEach((element) {
+    //   BookModel model = BookModel(
+    //     title: element["title"],
+    //     author: element["author"],
+    //     image: element["image"],
+    //     description: element["description"],
+    //   );
+    //   books.add(model);
+    // });
+
+    // for (var item in data) {
+    //   books.add(
+    //     BookModel(
+    //       title: item["title"],
+    //       author: item["author"],
+    //       image: item["image"],
+    //       description: item["description"],
+    //     ),
+    //   );
+    // }
+
+    // data.forEach((element) {
+    //   BookModel model = BookModel.convertirMapaAModelo(element);
+    //   books.add(model);
+    // });
+
+    // for (var item in data) {
+    //   books.add(
+    //     BookModel.convertirMapaAModelo(item),
+    //   );
+    // }
+
+    // print(books.first.toJson());
 
     return books;
   }

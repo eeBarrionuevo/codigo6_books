@@ -11,7 +11,12 @@ class BookModel {
     required this.description,
   });
 
-  // fromJson
+  factory BookModel.fromJson(Map<String, dynamic> mapa) => BookModel(
+        title: mapa["title"],
+        author: mapa["author"],
+        image: mapa["image"],
+        description: mapa["description"],
+      );
 
   Map<String, dynamic> toJson() => {
         "title": title,
