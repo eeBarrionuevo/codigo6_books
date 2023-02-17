@@ -20,7 +20,7 @@ class ItemHomeWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12.0),
             child: Image.network(
-              "https://www.theonering.net/torwp/wp-content/uploads/2022/04/pu1i0ekgyhu81.webp",
+              book["image"],
               width: pyth * 0.12,
               height: pyth * 0.16,
               fit: BoxFit.cover,
