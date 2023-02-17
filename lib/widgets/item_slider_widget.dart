@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:codigo6_books/models/book_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemSliderWidget extends StatelessWidget {
-  Map book;
+  BookModel book;
   ItemSliderWidget({required this.book});
 
   Map<int, Color> colors = {
@@ -59,7 +60,7 @@ class ItemSliderWidget extends StatelessWidget {
                       ],
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(book["image"]),
+                        image: NetworkImage(book.image),
                       ),
                     ),
                   ),
@@ -72,7 +73,7 @@ class ItemSliderWidget extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  book["title"],
+                  book.title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   textAlign: TextAlign.center,
@@ -86,7 +87,7 @@ class ItemSliderWidget extends StatelessWidget {
                   height: 6.0,
                 ),
                 Text(
-                  book["author"],
+                  book.author,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

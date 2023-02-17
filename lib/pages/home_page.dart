@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:codigo6_books/db/db_admin.dart';
+import 'package:codigo6_books/models/book_model.dart';
 import 'package:codigo6_books/pages/modals/form_book_modal.dart';
 import 'package:codigo6_books/widgets/common_textfield_widget.dart';
 import 'package:codigo6_books/widgets/item_home_widget.dart';
@@ -148,7 +149,7 @@ class _HomePageState extends State<HomePage> {
               future: DBAdmin().getBooks(),
               builder: (BuildContext context, AsyncSnapshot snap) {
                 if (snap.hasData) {
-                  List<Map> myBooks = snap.data;
+                  List<BookModel> myBooks = snap.data;
                   return myBooks.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.all(14.0),
