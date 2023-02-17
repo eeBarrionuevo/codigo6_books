@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                     builder: (BuildContext context, AsyncSnapshot snap) {
                       if (snap.hasData) {
                         List<Map> books = snap.data;
-                        print(books);
+
                         return books.isNotEmpty
                             ? ListView.builder(
                                 itemCount: books.length,
