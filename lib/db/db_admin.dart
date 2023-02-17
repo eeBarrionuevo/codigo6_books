@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:codigo6_books/models/book_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -45,13 +46,25 @@ class DBAdmin {
     });
   }
 
-  Future<List<Map>> getBooks() async {
+  Future<List<BookModel>> getBooks() async {
     Database? db = await _checkDatabase();
     List<Map> data = await db!.query(
       "Book",
       orderBy: "id DESC",
     );
-    return data;
+    List<BookModel> books = [];
+
+    data.forEach((element) {
+      BookModel model = BookModel(
+        title: element["title"],
+        author: element["author"],
+        image: element["image"],
+        description: element["description"],
+      );
+      books.add(model);
+    });
+
+    return books;
   }
 
   //Inserciones

@@ -173,8 +173,8 @@ class _HomePageState extends State<HomePage> {
                                 physics: const BouncingScrollPhysics(),
                                 child: Row(
                                   children: myBooks
-                                      .map((item) => ItemSliderWidget(
-                                            book: item,
+                                      .map((mandarina) => ItemSliderWidget(
+                                            book: mandarina,
                                           ))
                                       .toList(),
                                 ),
