@@ -54,7 +54,7 @@ class DBAdmin {
     );
     ;
     List<BookModel> books = data.map((e) => BookModel.fromJson(e)).toList();
-    print(books[1].id);
+
     // data.forEach((element) {
     //   BookModel model = BookModel(
     //     title: element["title"],

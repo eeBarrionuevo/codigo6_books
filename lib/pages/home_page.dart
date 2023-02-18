@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  showDeleteDialog() {
+  showDeleteDialog(int idBook) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -71,7 +71,13 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        // DBAdmin().deleteBook();
+                        DBAdmin().deleteBook(idBook).then((value) {
+                          if (value >= 0) {
+                            Navigator.pop(context);
+                            setState(() {});
+                            //SnackBar
+                          }
+                        });
                       },
                       child: Text(
                         "Aceptar",
@@ -263,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                                   return ItemHomeWidget(
                                     book: myBooks[index],
                                     onDelete: () {
-                                      showDeleteDialog();
+                                      showDeleteDialog(myBooks[index].id!);
                                     },
                                     onUpdate: () {
                                       showFormBook();
