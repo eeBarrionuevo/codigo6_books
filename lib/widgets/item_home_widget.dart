@@ -1,12 +1,19 @@
 import 'dart:math';
 
+import 'package:codigo6_books/db/db_admin.dart';
 import 'package:codigo6_books/models/book_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemHomeWidget extends StatelessWidget {
   BookModel book;
+  Function onDelete;
+  Function onUpdate;
 
-  ItemHomeWidget({required this.book});
+  ItemHomeWidget({
+    required this.book,
+    required this.onDelete,
+    required this.onUpdate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +82,10 @@ class ItemHomeWidget extends StatelessWidget {
           child: PopupMenuButton(
             onSelected: (int value) {
               if (value == 1) {
-              } else {}
+                onUpdate();
+              } else {
+                onDelete();
+              }
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14.0),
@@ -93,9 +103,9 @@ class ItemHomeWidget extends StatelessWidget {
                     ],
                   ),
                   value: 1,
-                  onTap: () {
-                    print("ACTUALIZARRRRRRRRRRRRRR");
-                  },
+                  // onTap: () {
+                  //   onUpdate();
+                  // },
                 ),
                 PopupMenuItem(
                   child: Row(
@@ -108,9 +118,10 @@ class ItemHomeWidget extends StatelessWidget {
                     ],
                   ),
                   value: 2,
-                  onTap: () {
-                    print("ELIMINARRRRRRRRRRRRRRRR");
-                  },
+                  // onTap: () {
+                  //   // DBAdmin().deleteBook();
+
+                  // },
                 ),
               ];
             },
