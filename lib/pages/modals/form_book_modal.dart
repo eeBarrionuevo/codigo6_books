@@ -4,6 +4,13 @@ import 'package:codigo6_books/widgets/common_textfield_widget.dart';
 import 'package:flutter/material.dart';
 
 class FormBookModal extends StatefulWidget {
+  BookModel? book;
+  bool isRegister;
+  FormBookModal({
+    this.book,
+    required this.isRegister,
+  });
+
   @override
   State<FormBookModal> createState() => _FormBookModalState();
 }
@@ -18,6 +25,18 @@ class _FormBookModalState extends State<FormBookModal> {
   final TextEditingController _descriptionController = TextEditingController();
 
   final _myFormKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (!widget.isRegister) {
+      _titleController.text = widget.book!.title;
+      _authorController.text = widget.book!.author;
+      _imageController.text = widget.book!.image;
+      _descriptionController.text = widget.book!.description;
+    }
+  }
 
   void registerBook() {
     if (_myFormKey.currentState!.validate()) {
@@ -81,6 +100,9 @@ class _FormBookModalState extends State<FormBookModal> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.book!.title);
+    print(widget.isRegister);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0),
       decoration: const BoxDecoration(

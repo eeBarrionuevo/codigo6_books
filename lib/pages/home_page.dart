@@ -15,6 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  BookModel? booKTemp;
+  bool isRegister = true;
+
   showFormBook() {
     showModalBottomSheet(
       context: context,
@@ -23,7 +26,10 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
-          child: FormBookModal(),
+          child: FormBookModal(
+            book: booKTemp,
+            isRegister: isRegister,
+          ),
         );
       },
     ).then((value) {
@@ -108,6 +114,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: InkWell(
         onTap: () {
+          isRegister = true;
           showFormBook();
         },
         child: Container(
@@ -272,7 +279,10 @@ class _HomePageState extends State<HomePage> {
                                       showDeleteDialog(myBooks[index].id!);
                                     },
                                     onUpdate: () {
+                                      booKTemp = myBooks[index];
+                                      isRegister = false;
                                       showFormBook();
+                                      // print(myBooks[index].toJson());
                                     },
                                   );
                                 },
