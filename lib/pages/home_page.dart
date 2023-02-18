@@ -36,6 +36,9 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -51,7 +54,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Expanded(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: Text(
                         "Cancelar",
                         style: TextStyle(
@@ -65,7 +70,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // DBAdmin().deleteBook();
+                      },
                       child: Text(
                         "Aceptar",
                       ),

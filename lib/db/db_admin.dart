@@ -52,8 +52,9 @@ class DBAdmin {
       "Book",
       orderBy: "id DESC",
     );
+    ;
     List<BookModel> books = data.map((e) => BookModel.fromJson(e)).toList();
-
+    print(books[1].id);
     // data.forEach((element) {
     //   BookModel model = BookModel(
     //     title: element["title"],
@@ -137,12 +138,12 @@ class DBAdmin {
     print(value);
   }
 
-  deleteBook() async {
+  Future<int> deleteBook(int idBook) async {
     Database? db = await _checkDatabase();
     int value = await db!.delete(
       "Book",
-      where: "id = 8",
+      where: "id = $idBook",
     );
-    print(value);
+    return value;
   }
 }
