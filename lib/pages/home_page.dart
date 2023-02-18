@@ -32,7 +32,49 @@ class _HomePageState extends State<HomePage> {
   }
 
   showDeleteDialog() {
-    print("Aqui se va a mostrar el dialog para eliminar!!!!!!!!!!!!");
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Atención"),
+              SizedBox(
+                height: 8.0,
+              ),
+              Text("¿Deseas eliminar este libro?"),
+              SizedBox(
+                height: 12.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Cancelar",
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 6.0,
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Aceptar",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
