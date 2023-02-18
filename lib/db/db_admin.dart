@@ -76,13 +76,13 @@ class DBAdmin {
     // }
 
     // data.forEach((element) {
-    //   BookModel model = BookModel.convertirMapaAModelo(element);
+    //   BookModel model = BookModel.fromJson(element);
     //   books.add(model);
     // });
 
     // for (var item in data) {
     //   books.add(
-    //     BookModel.convertirMapaAModelo(item),
+    //     BookModel.fromJson(item),
     //   );
     // }
 
