@@ -80,6 +80,13 @@ class _HomePageState extends State<HomePage> {
                         DBAdmin().deleteBook(idBook).then((value) {
                           if (value >= 0) {
                             Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "El libro se eliminó correctamente",
+                                ),
+                              ),
+                            );
                             setState(() {});
                             //SnackBar
                           }

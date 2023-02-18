@@ -119,15 +119,14 @@ class DBAdmin {
     print(value);
   }
 
-  updateBook() async {
+  Future<int> updateBook(BookModel model) async {
     Database? db = await _checkDatabase();
     int value = await db!.update(
       "Book",
-      {
-        "title": "1984",
-      },
-      where: "id = 3",
+      model.toJson(),
+      where: "id = ${model.id}",
     );
+    return value;
   }
 
   //Eliminar
