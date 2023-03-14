@@ -138,9 +138,6 @@ class _FormBookModalState extends State<FormBookModal> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.book!.title);
-    print(widget.isRegister);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0),
       decoration: const BoxDecoration(
@@ -179,7 +176,7 @@ class _FormBookModalState extends State<FormBookModal> {
               CommonTextFieldWidget(
                 hintText: "Ingresa el url de la portada",
                 icon: Icons.image,
-                label: "Portadaaaa",
+                label: "Portada",
                 controller: _imageController,
               ),
               CommonTextFieldWidget(
